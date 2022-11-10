@@ -63,9 +63,9 @@ exports.intrested_create_post = async function(req, res) {
     // Even though bodies can be in many different formats, we will be picky 
     // and require that it be a json object 
     // {"intrested_type":"goat", "cost":12, "size":"large"} 
-    document.intrested_type = req.body.intrested_type; 
-    document.cost = req.body.cost; 
-    document.size = req.body.size; 
+    document.subjectName = req.body.subjectName; 
+    document.section = req.body.section; 
+    document.rollnumber = req.body.rollnumber; 
     try{ 
         let result = await document.save(); 
         res.send(result); 
