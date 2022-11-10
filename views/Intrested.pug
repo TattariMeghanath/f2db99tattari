@@ -1,7 +1,7 @@
 extends layout
 block content
   h1= title
-  - var result = [{"subjectName":"Physics","section":"A","rollnumber":7},{"subjectName":"Maths","section":"B","rollnumber":9},{"subjectName":"Social","section":"c","rollnumber":4}]
+  - var result = results
   div.container-fluid
      div.row
         each item,index in result
@@ -10,6 +10,3 @@ block content
       function buy(index){
          alert("you purchased item "+(index+1))
       }
-
-
-  
