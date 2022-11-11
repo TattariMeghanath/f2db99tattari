@@ -30,8 +30,24 @@ exports.intrested_delete = function(req, res) {
 }; 
  
 // Handle intrested update form on PUT. 
-exports.intrested_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: intrested update PUT' + req.params.id); 
+exports.intrested_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await intrested.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.intrested_type)  
+               toUpdate.intrested_type = req.body.intrested_type; 
+        if(req.body.section) toUpdate.section = req.body.section; 
+        if(req.body.rollnumber) toUpdate.rollnumber = req.body.rollnumber; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
 }; 
 // VIEWS 
 // Handle a show all view 
@@ -62,7 +78,7 @@ exports.intrested_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters. 
     // Even though bodies can be in many different formats, we will be picky 
     // and require that it be a json object 
-    // {"intrested_type":"goat", "cost":12, "size":"large"} 
+    // {"intrested_type":"goat", "section":12, "rollnumber":"large"} 
     document.subjectName = req.body.subjectName; 
     document.section = req.body.section; 
     document.rollnumber = req.body.rollnumber; 
@@ -74,4 +90,16 @@ exports.intrested_create_post = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+}; 
+
+// for a specific intrested. 
+exports.intrested_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await intrested.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
