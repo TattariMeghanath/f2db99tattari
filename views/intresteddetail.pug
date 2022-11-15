@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let intrestedid = toShow._id 
+  - let subjectName = toShow.subjectName 
+  - let section = toShow.section 
+  - let rollnumber = toShow.rollnumber 
+  div 
+    div.row 
+      div(class='intrestedAttr mr-3') intrested ID is: 
+      div #{intrestedid} 
+    div.row 
+      div(class='intrestedAttr mr-3') subject Name  is: 
+      div #{subjectName} 
+    div.row 
+      div(class='intrestedAttr mr-3') section is: 
+      div #{section} 
+    div.row 
+      div(class='intrestedAttr mr-3') rollnumber is: 
+      div #{rollnumber} 

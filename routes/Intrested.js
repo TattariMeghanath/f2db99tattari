@@ -8,3 +8,9 @@ module.exports = router;
 
 // GET request for one intrested. 
 router.get('/intresteds/:id', intrested_controlers.intrested_detail); 
+/* GET detail intrested page */ 
+router.get('/detail', intrested_controlers.intrested_view_one_Page);
+
+/* GET create intrested page */ 
+router.get('/create', intrested_controlers.intrested_create_Page); 
+ 
