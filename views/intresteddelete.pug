@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let intrestedid = toShow._id 
+    - let subjectName = toShow.subjectName 
+    - let section = toShow.section 
+    - let rollnumber = toShow.rollnumber 
+    - let actionid = "/resource/intrested/" + intrestedid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='intrestedAttr mr-3') intrested ID is: 
+        div #{intrestedid} 
+      div.row 
+        div(class='intrestedAttr mr-3') intrested Type is: 
+        div #{subjectName} 
+      div.row 
+        div(class='intrestedAttr mr-3') intrested Size is: 
+        div #{section} 
+      div.row 
+        div(class='intrestedAttr mr-3') intrested Cost is: 
+        div #{rollnumber} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the intrested collection 
+      window.location.href='/intresteds' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/intrested' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 

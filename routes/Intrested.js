@@ -14,3 +14,8 @@ router.get('/detail', intrested_controlers.intrested_view_one_Page);
 /* GET create intrested page */ 
 router.get('/create', intrested_controlers.intrested_create_Page); 
  
+/* GET create update page */ 
+router.get('/update', intrested_controlers.intrested_update_Page);
+
+/* GET delete intrested page */ 
+router.get('/delete', intrested_controlers.intrested_delete_Page);
