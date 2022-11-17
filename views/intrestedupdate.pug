@@ -2,17 +2,20 @@ extends layout
  
 block content 
   h1= title 
- 
-  - let intrestedid = toShow._id 
-  - let subjectName = toShow.subjectName 
-  - let section = toShow.section 
-  - let rollnumber = toShow.rollnumber 
+
+  if (toShow == null)    
+    h2 No instance to update 
+  else 
+   - let intrestedid = toShow._id 
+   - let subjectName = toShow.subjectName 
+   - let section = toShow.section 
+   - let rollnumber = toShow.rollnumber 
    
-  div.row(class='mb-2') 
+   div.row(class='mb-2') 
     div.mr-1 ID is 
     div #{intrestedid} 
-  - let actionid = "/resource/intrested/" + intrestedid 
-  form(id='intrestedForm', action= actionid, method="PUT") 
+   - let actionid = "/resource/intrested/" + intrestedid 
+   form(id='login-form', action= actionid, method="PUT") 
     div.form-group 
         label.intrestedAttr(for='subjectName') subjectName 
         input#subjectName(type='text', name='subjectName', value= subjectName ) 

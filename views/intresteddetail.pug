@@ -2,12 +2,14 @@ extends layout
  
 block content 
   h1= title 
- 
-  - let intrestedid = toShow._id 
-  - let subjectName = toShow.subjectName 
-  - let section = toShow.section 
-  - let rollnumber = toShow.rollnumber 
-  div 
+  if (toShow == null)    
+    h2 No instance to delete 
+  else 
+   - let intrestedid = toShow._id 
+   - let subjectName = toShow.subjectName 
+   - let section = toShow.section 
+   - let rollnumber = toShow.rollnumber 
+   div 
     div.row 
       div(class='intrestedAttr mr-3') intrested ID is: 
       div #{intrestedid} 
