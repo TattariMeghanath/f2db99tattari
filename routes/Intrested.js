@@ -1,6 +1,14 @@
 var express = require('express'); 
 const intrested_controlers= require('../controllers/intrested'); 
 var router = express.Router(); 
+const secured = (req, res, next) => { 
+    if (req.user){ 
+      return next(); 
+    } 
+    req.session.returnTo = req.originalUrl; 
+    res.redirect("/login"); 
+  } 
+ 
  
 /* GET intresteds */ 
 router.get('/', intrested_controlers.intrested_view_all_Page ); 
@@ -15,7 +23,7 @@ router.get('/detail', intrested_controlers.intrested_view_one_Page);
 router.get('/create', intrested_controlers.intrested_create_Page); 
  
 /* GET create update page */ 
-router.get('/update', intrested_controlers.intrested_update_Page);
+router.get('/update',secured, intrested_controlers.intrested_update_Page);
 
 /* GET delete intrested page */ 
 router.get('/delete', intrested_controlers.intrested_delete_Page);
